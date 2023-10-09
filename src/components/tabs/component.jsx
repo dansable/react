@@ -1,11 +1,13 @@
 import {Tab} from "../tab/component.jsx";
 
-export const Tabs = ({tabs, onSelect}) => {
+export const Tabs = ({tabs, onSelect, selectedIndex}) => {
   return (
-    tabs.map((tab) => {
-      return (
-        <Tab tab={tab} onClick={() => onSelect(tab.index)}/>
-      );
-    })
+    <div>
+      {tabs.map((tab) => {
+        return (
+          <Tab key={tab.id} tab={tab} onClick={() => onSelect(tab.index)} active={tab.index === selectedIndex}/>
+        );
+      })}
+    </div>
   );
 }

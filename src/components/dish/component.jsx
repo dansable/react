@@ -11,12 +11,16 @@ export const Dish = ({name}) => {
         title="-"
         onClick={() => setAmount(amount - 1)}
         disabled={amount === 0}
+        size="small"
+        type="primary"
       />
       {amount}
       <Button
         title="+"
         onClick={() => setAmount(amount + 1)}
         disabled={amount === 5}
+        size="small"
+        type="primary"
       />
     </>
   );
