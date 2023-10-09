@@ -44,3 +44,22 @@
   background: var(--light-color);
   color: var(--text-alt-color);
 }
+
+.dark-theme {
+  &.link {
+    &.active {
+      background: var(--dark-primary-color);
+      color: var(--text-alt-color);
+    }
+  }
+
+  &.primary {
+    border: 1px solid var(--dark-primary-color);
+    background: var(--dark-primary-color);
+  }
+
+  &.secondary {
+    border: 1px solid var(--dark-secondary-color);
+    background: var(--dark-secondary-color);
+  }
+}

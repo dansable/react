@@ -3,9 +3,10 @@ import {RestaurantsPage} from "./pages/restaurants/component.jsx";
 
 import 'normalize.css';
 import './index.scss';
+import {ThemeProvider} from "./contexts/theme.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <main>
+  <ThemeProvider>
     <RestaurantsPage/>
-  </main>
+  </ThemeProvider>
 )
