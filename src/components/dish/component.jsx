@@ -8,20 +8,18 @@ export const Dish = ({name}) => {
     <>
       {name} -
       <Button
-        title="-"
         onClick={() => setAmount(amount - 1)}
         disabled={amount === 0}
         size="small"
         type="primary"
-      />
+      >-</Button>
       {amount}
       <Button
-        title="+"
         onClick={() => setAmount(amount + 1)}
         disabled={amount === 5}
         size="small"
         type="primary"
-      />
+      >+</Button>
     </>
   );
 };
