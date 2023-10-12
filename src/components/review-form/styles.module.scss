@@ -1,0 +1,12 @@
+.formControl:not(:last-child) {
+  margin-bottom: 8px;
+  display: flex;
+
+  label {
+    width: 200px;
+  }
+
+  input, textarea {
+    flex: 1;
+  }
+}

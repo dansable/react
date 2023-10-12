@@ -1,9 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom/client';
 import {RestaurantsPage} from "./pages/restaurants/component.jsx";
 
+import 'normalize.css';
+import './index.scss';
+import {ThemeProvider} from "./contexts/theme.jsx";
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <div>
+  <ThemeProvider>
     <RestaurantsPage/>
-  </div>
+  </ThemeProvider>
 )

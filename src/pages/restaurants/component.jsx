@@ -3,6 +3,7 @@ import {useState} from "react";
 import {restaurants} from "../../constants/mock.js";
 import {Restaurant} from "../../components/restaurant/component.jsx";
 import {createRestaurantTabs} from "../../utils/restaurant-tabs.js";
+import {Layout} from "../../layout/component.jsx";
 
 export const RestaurantsPage = () => {
   const restaurantTabs = createRestaurantTabs(restaurants);
@@ -10,9 +11,9 @@ export const RestaurantsPage = () => {
   const selectedRestaurant = restaurants[selectedRestaurantIndex];
 
   return (
-    <div>
-      <Tabs tabs={restaurantTabs} onSelect={setSelectedRestaurantIndex}/>
+    <Layout>
+      <Tabs tabs={restaurantTabs} onSelect={setSelectedRestaurantIndex} selectedIndex={selectedRestaurantIndex}/>
       <Restaurant restaurant={selectedRestaurant}/>
-    </div>
+    </Layout>
   );
 };
