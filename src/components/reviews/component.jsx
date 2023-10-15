@@ -1,11 +1,11 @@
 import {Review} from "../review/component.jsx";
 
-export const Reviews = ({reviews}) => {
+export const Reviews = ({ids}) => {
   return (
     <ul>
-      {reviews.map((review) => (
-        <li key={review.id}>
-          <Review review={review}/>
+      {ids.map((id) => (
+        <li key={id}>
+          <Review id={id}/>
         </li>))}
     </ul>
   );
