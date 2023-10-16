@@ -3,9 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {createEntityState} from "../../../utils/entity-state.js";
 
 
-const initialState = {
-  ...createEntityState(normalizedUsers),
-};
+const initialState = createEntityState(normalizedUsers);
 
 const {reducer} = createSlice({
   name: "users",
