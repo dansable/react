@@ -1,11 +1,12 @@
-import {Dish} from "../dish/component.jsx";
+import {DishContainer} from "../dish/container.jsx";
+
 
 export const RestaurantMenu = ({dishesIds}) => {
   return (
     <ul>
       {dishesIds.map((id) => (
         <li key={id}>
-          <Dish id={id}></Dish>
+          <DishContainer id={id}/>
         </li>))}
     </ul>
   );

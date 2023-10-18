@@ -1,10 +1,7 @@
 import {Button} from "../button/component.jsx";
 import {useState} from "react";
-import {useSelector} from "react-redux";
-import {selectDishById} from "../../redux/entities/dishes/selectors.js";
 
-export const Dish = ({id}) => {
-  const dish = useSelector(state => selectDishById(state, id));
+export const Dish = ({dish}) => {
   const [amount, setAmount] = useState(0);
 
   return (
