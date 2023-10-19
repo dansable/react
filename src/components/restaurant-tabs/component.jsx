@@ -1,13 +1,17 @@
-import {Tabs} from "../../components/tabs/component.jsx";
-import {useSelector} from "react-redux";
-import {selectRestaurantsByIds} from "../../redux/entities/restaurants/selectors.js";
-import {createRestaurantTabs} from "../../utils/restaurant-tabs.js";
+import {RestaurantTabContainer} from "../restaurant-tab/container.jsx";
 
 export const RestaurantTabs = ({restaurantsIds, onSelect, selectedId}) => {
-  const restaurants = useSelector((state) => selectRestaurantsByIds(state, restaurantsIds));
-  const restaurantTabs = createRestaurantTabs(restaurants);
-
   return (
-    <Tabs tabs={restaurantTabs} onSelect={onSelect} selectedId={selectedId}/>
-  );
-}
+    <div>
+      {restaurantsIds.map((id) => {
+        return (
+          <RestaurantTabContainer
+            key={id}
+            id={id}
+            onClick={() => onSelect(id)}
+            active={id === selectedId}/>
+        );
+      })}
+    </div>
+  )
+};

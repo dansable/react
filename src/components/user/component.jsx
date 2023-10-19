@@ -1,5 +1,5 @@
-export const User = ({name}) => {
+export const User = ({user}) => {
   return <>
-    {name}
+    {user.name}
   </>;
 }
