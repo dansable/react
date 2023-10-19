@@ -4,7 +4,6 @@ import {Restaurant} from "./component.jsx";
 import {useEffect} from "react";
 import {getDishes} from "../../redux/entities/dishes/thunks/get-dishes.js";
 import {getReviews} from "../../redux/entities/reviews/thunks/get-reviews.js";
-import {getUsers} from "../../redux/entities/users/thunks/get-users.js";
 
 export const RestaurantContainer = ({id}) => {
   const restaurant = useSelector(state => selectRestaurantById(state, id));
@@ -14,7 +13,6 @@ export const RestaurantContainer = ({id}) => {
     if (restaurant) {
       dispatch(getDishes({restaurantId: id}));
       dispatch(getReviews({restaurantId: id}));
-      dispatch(getUsers());
     }
   }, [id]);
 
