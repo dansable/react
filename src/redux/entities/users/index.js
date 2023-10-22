@@ -1,26 +1,15 @@
 import {createEntityAdapter, createSlice} from "@reduxjs/toolkit";
-import {REQUEST_STATUS} from "../../../constants/statuses.js";
-import {getUsers} from "./thunks/get-users.js";
-
+import {getUsersIfNotExist} from "./thunks/get-users.js";
 
 const entityAdapter = createEntityAdapter();
 
 const {reducer} = createSlice({
   name: "users",
-  initialState: entityAdapter.getInitialState({
-    status: REQUEST_STATUS.idle,
-  }),
+  initialState: entityAdapter.getInitialState(),
   extraReducers: (builder) =>
     builder
-      .addCase(getUsers.pending, (state) => {
-        state.status = REQUEST_STATUS.pending;
-      })
-      .addCase(getUsers.fulfilled, (state, {payload}) => {
+      .addCase(getUsersIfNotExist.fulfilled, (state, {payload}) => {
         entityAdapter.setAll(state, payload);
-        state.status = REQUEST_STATUS.fulfilled;
-      })
-      .addCase(getUsers.rejected, (state) => {
-        state.status = REQUEST_STATUS.rejected;
       })
 });
 

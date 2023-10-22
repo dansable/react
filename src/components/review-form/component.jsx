@@ -30,9 +30,10 @@ export const ReviewForm = ({onSubmit}) => {
     event.preventDefault();
     event.stopPropagation();
 
-    dispatch({type: "reset"})
-    onSubmit();
-  }
+    onSubmit(formValue, () => {
+      dispatch({type: "reset"});
+    });
+  };
 
   return (
     <form>
