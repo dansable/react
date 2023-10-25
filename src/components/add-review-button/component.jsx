@@ -1,11 +1,11 @@
 import {Button} from "../button/component.jsx";
 import {useState} from "react";
-import {ReviewForm} from "../review-form/component.jsx";
 import {Modal} from "../modal/component.jsx";
+import {ReviewFormContainer} from "../review-form/container.jsx";
 
-export const AddReviewButton = () => {
+export const AddReviewButton = ({restaurantId}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const close = () => setIsModalOpen(false)
+  const close = () => setIsModalOpen(false);
 
   return (
     <>
@@ -14,7 +14,7 @@ export const AddReviewButton = () => {
       </Button>
       {isModalOpen && (
         <Modal onClose={close}>
-          <ReviewForm onSubmit={close}/>
+          <ReviewFormContainer onSubmit={close} restaurantId={restaurantId}/>
         </Modal>
       )}
     </>

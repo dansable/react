@@ -1,6 +1,7 @@
-import {useReducer} from "react";
+import {useEffect, useReducer} from "react";
 import {Button} from "../button/component.jsx";
 import styles from "./styles.module.scss";
+import {REQUEST_STATUS} from "../../constants/statuses.js";
 
 const DEFAULT_VALUE = {
   name: "",
@@ -23,16 +24,21 @@ const reducer = (state, action) => {
   }
 };
 
-export const ReviewForm = ({onSubmit}) => {
+export const ReviewForm = ({onSubmit, requestStatus}) => {
   const [formValue, dispatch] = useReducer(reducer, DEFAULT_VALUE);
+
+  useEffect(() => {
+    if (requestStatus === REQUEST_STATUS.fulfilled) {
+      dispatch({type: "reset"});
+    }
+  }, [requestStatus]);
 
   const submit = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
-    dispatch({type: "reset"})
-    onSubmit();
-  }
+    onSubmit(formValue);
+  };
 
   return (
     <form>
@@ -72,7 +78,11 @@ export const ReviewForm = ({onSubmit}) => {
             }}
           />
         </div>
-        <Button htmlType="submit" type="primary" onClick={submit}>Submit</Button>
+        <Button htmlType="submit"
+                type="primary"
+          //не срабатывает
+                disabled={requestStatus === REQUEST_STATUS.pending}
+                onClick={submit}>Submit</Button>
       </fieldset>
     </form>
   );
