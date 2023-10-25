@@ -1,27 +1,19 @@
 import {ReviewForm} from "./component.jsx";
-import {createReview} from "../../redux/entities/reviews/thunks/create-review.js";
-import {useMakeRequest} from "../../hooks/use-make-request.js";
-import {REQUEST_STATUS} from "../../constants/statuses.js";
+import {useCreateReviewMutation} from "../../redux/services/reviews.js";
 import {useEffect} from "react";
 
 export const ReviewFormContainer = ({onSubmit, restaurantId}) => {
-  const [requestStatus, saveReview] = useMakeRequest(createReview);
-
-  //срабатывает уже по окончанию реквеста
-  if (requestStatus === REQUEST_STATUS.pending) {
-    console.log('ReviewFormContainer requestStatus', requestStatus);
-    // return <div>Loading...</div>;
-  }
+  const [createReview, {isLoading, isSuccess}] = useCreateReviewMutation();
 
   useEffect(() => {
-    if (requestStatus === REQUEST_STATUS.fulfilled) {
+    if (isSuccess) {
       onSubmit();
     }
-  }, [onSubmit, requestStatus]);
+  }, [onSubmit, isSuccess]);
 
   const submit = async (newReview) => {
-    saveReview({restaurantId, newReview});
+    createReview({restaurantId, newReview});
   }
 
-  return <ReviewForm onSubmit={submit} requestStatus={requestStatus}/>;
+  return <ReviewForm onSubmit={submit} success={isSuccess} loading={isLoading}/>;
 };

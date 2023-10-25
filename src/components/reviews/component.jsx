@@ -1,16 +1,16 @@
-import {ReviewContainer} from "../review/container.jsx";
+import {Review} from "../review/component.jsx";
 
-export const Reviews = ({ids}) => {
+export const Reviews = ({reviews}) => {
   return (
     <div>
       <h3>Reviews</h3>
       <ul>
-        {ids.map((id) => (
-          <li key={id}>
-            <ReviewContainer id={id}/>
-          </li>))}
+        {reviews.map((review) => (
+          <li key={review.id}>
+            <Review review={review}/>
+          </li>))
+        }
       </ul>
     </div>
-
   );
 };
