@@ -1,9 +1,25 @@
-import {RestaurantTabs} from "./component.jsx";
-import {useSelector} from "react-redux";
-import {selectRestaurantsIds} from "../../redux/entities/restaurants/selectors.js";
+import {NavLink} from "react-router-dom";
+import {Tab} from "../tab/component.jsx";
+import {createRestaurantTabs} from "../../utils/restaurant-tabs.js";
 
-export const RestaurantTabsContainer = (props) => {
-  const restaurantsIds = useSelector(selectRestaurantsIds);
+export const RestaurantTabsContainer = ({restaurants}) => {
+  const tabs = createRestaurantTabs(restaurants);
 
-  return (<RestaurantTabs {...props} restaurantsIds={restaurantsIds}/>);
+  return (
+    <div>
+      {tabs?.map((tab) => {
+        return (
+          <NavLink key={tab.id}
+                   to={tab.id}>
+            {({isActive}) => (
+              <Tab
+                tab={tab}
+                active={isActive}
+              />
+            )}
+          </NavLink>
+        );
+      })}
+    </div>
+  )
 };

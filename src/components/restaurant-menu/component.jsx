@@ -1,15 +1,16 @@
 import {DishContainer} from "../dish/container.jsx";
 
 
-export const RestaurantMenu = ({dishesIds}) => {
+export const RestaurantMenu = ({dishes}) => {
   return (
     <div>
       <h3>Menu</h3>
       <ul>
-        {dishesIds.map((id) => (
-          <li key={id}>
-            <DishContainer id={id}/>
-          </li>))}
+        {dishes?.map((dish) => (
+          <li key={dish.id}>
+            <DishContainer dish={dish}/>
+          </li>))
+        }
       </ul>
     </div>
   );

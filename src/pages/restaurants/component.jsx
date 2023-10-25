@@ -1,23 +1,19 @@
-import {useEffect, useState} from "react";
-import {Layout} from "../../layout/component.jsx";
-import {RestaurantContainer} from "../../components/restaurant/container.jsx";
+import {useGetRestaurantsQuery} from "../../redux/services/restaurants.js";
 import {RestaurantTabsContainer} from "../../components/restaurant-tabs/container.jsx";
-import {useDispatch} from "react-redux";
-import {getRestaurantsIfNotExists} from "../../redux/entities/restaurants/thunks/get-resturants.js";
+import {Outlet} from "react-router-dom";
 
 export const RestaurantsPage = () => {
-  const [selectedRestaurantId, setSelectedRestaurantId] = useState();
-  const dispatch = useDispatch();
+  const {data, isFetching} = useGetRestaurantsQuery();
 
-  useEffect(() => {
-    dispatch(getRestaurantsIfNotExists());
-  }, []);
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <Layout>
-      <RestaurantTabsContainer onSelect={setSelectedRestaurantId}
-                               selectedId={selectedRestaurantId}/>
-      {selectedRestaurantId && (<RestaurantContainer id={selectedRestaurantId}/>)}
-    </Layout>
+    <>
+      <RestaurantTabsContainer
+        restaurants={data}/>
+      <Outlet/>
+    </>
   );
 };
