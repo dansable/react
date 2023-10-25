@@ -11,5 +11,5 @@ export function useMakeRequest(thunk) {
     request.current = dispatch(thunk(...params));
   }, [dispatch, thunk]);
 
-  return [requestStatus, makeRequest, request];
+  return [requestStatus, makeRequest];
 }

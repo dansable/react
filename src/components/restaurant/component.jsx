@@ -1,6 +1,6 @@
-import {AddReviewButton} from "../add-review-button/component.jsx";
 import {RestaurantMenuContainer} from "../restaurant-menu/container.jsx";
 import {ReviewsContainer} from "../reviews/container.jsx";
+import {AddReviewButton} from "../add-review-button/component.jsx";
 
 export const Restaurant = ({restaurant}) => {
   return (
